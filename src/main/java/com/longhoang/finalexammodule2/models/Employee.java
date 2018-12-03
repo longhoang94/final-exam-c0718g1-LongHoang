@@ -1,10 +1,8 @@
 package com.longhoang.finalexammodule2.models;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "employee")
