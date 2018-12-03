@@ -12,7 +12,12 @@
 <h1>Delete employee</h1>
 <form th:action="@{/edit-employee}" th:object="${employee}" method="post">
     <input type="hidden" th:field="*{id}">
+    <!--<input type="hidden" th:field="*{employeeGroup.id}">-->
     <table>
+        <tr>
+            <td>Group</td>
+            <td><input type="text" th:field="*{employeeGroup.name}" disabled="disabled"></td>
+        </tr>
         <tr>
             <td>Name</td>
             <td><input type="text" th:field="*{name}" disabled="disabled"></td>

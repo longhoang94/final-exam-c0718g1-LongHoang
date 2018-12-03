@@ -11,6 +11,10 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @ManyToOne(targetEntity = EmployeeGroup.class)
+    @JoinColumn(name = "employee_group_id")
+    private EmployeeGroup employeeGroup;
+
     @NotBlank(message = "name can't blank")
     private String name;
 
@@ -37,7 +41,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String name, String gender, String dayOfBirth, String phoneNumber, String idCard, String email, String address) {
+    public Employee(EmployeeGroup employeeGroup, String name, String gender, String dayOfBirth, String phoneNumber, String idCard, String email, String address) {
         this.name = name;
         this.gender = gender;
         this.dayOfBirth = dayOfBirth;
@@ -45,6 +49,7 @@ public class Employee {
         this.idCard = idCard;
         this.email = email;
         this.address = address;
+        this.employeeGroup = employeeGroup;
     }
 
     public Integer getId() {
@@ -105,6 +110,14 @@ public class Employee {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public EmployeeGroup getEmployeeGroup() {
+        return employeeGroup;
+    }
+
+    public void setEmployeeGroup(EmployeeGroup employeeGroup) {
+        this.employeeGroup = employeeGroup;
     }
 
     public void setPhoneNumber(String phoneNumber) {

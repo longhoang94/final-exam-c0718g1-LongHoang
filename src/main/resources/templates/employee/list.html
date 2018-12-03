@@ -14,6 +14,7 @@
 <table border="1">
     <tr>
         <th>ID</th>
+        <th>Group</th>
         <th>Name</th>
         <th>Gender</th>
         <th>Phone Number</th>
@@ -22,6 +23,7 @@
     </tr>
     <tr th:each="employee : ${employees}">
         <td th:text="${employee.id}"></td>
+        <th th:text="${employee.employeeGroup.name}"></th>
         <td th:text="${employee.name}"></td>
         <td th:text="${employee.gender}"></td>
         <td th:text="${employee.phoneNumber}"></td>
