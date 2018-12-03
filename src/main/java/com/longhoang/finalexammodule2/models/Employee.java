@@ -1,6 +1,10 @@
 package com.longhoang.finalexammodule2.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "employee")
@@ -8,12 +12,28 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @NotBlank(message = "name can't blank")
     private String name;
+
+    @NotBlank(message = "gender can't blank")
+    @Pattern(regexp = "^[0-1]$", message = "0 = Male, 1 = Female")
     private String gender;
+
+    @Pattern(regexp = "[0-9]{2}/[0-9]{2}/[0-9]{2}", message = "example: dd/MM/yy")
     private String dayOfBirth;
+
+    @Pattern(regexp = "^0[0-9]{9}$", message = "start with 0 and have 10 numbers")
     private String phoneNumber;
+
+    @NotBlank
+    @NotNull(message = "idCard can't null")
     private String idCard;
+
+    @NotBlank(message = "Can't blank. Email example: abc@gmail.com")
     private String email;
+
+    @NotBlank
     private String address;
 
     public Employee() {
