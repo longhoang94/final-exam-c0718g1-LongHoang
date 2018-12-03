@@ -11,6 +11,7 @@ public class Employee {
     private String name;
     private String gender;
     private String dayOfBirth;
+    private String phoneNumber;
     private String idCard;
     private String email;
     private String address;
@@ -18,10 +19,11 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String name, String gender, String dayOfBirth, String idCard, String email, String address) {
+    public Employee(String name, String gender, String dayOfBirth, String phoneNumber, String idCard, String email, String address) {
         this.name = name;
         this.gender = gender;
         this.dayOfBirth = dayOfBirth;
+        this.phoneNumber = phoneNumber;
         this.idCard = idCard;
         this.email = email;
         this.address = address;
@@ -81,5 +83,13 @@ public class Employee {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
