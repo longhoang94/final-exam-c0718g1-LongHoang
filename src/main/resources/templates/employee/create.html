@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create employee</title>
+</head>
+<body>
+<th:block th:if="${message}">
+    <p th:text="${message}" style="color: yellow"></p>
+</th:block>
+<a href="/employees">Back to employee list</a>
+<h1>Create a new employee</h1>
+<form th:action="@{/create-employee}" th:object="${employee}" method="post">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td>Day of birth</td>
+            <td><input type="text" th:field="*{dayOfBirth}"></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td><input type="text" th:field="*{gender}"></td>
+        </tr>
+        <tr>
+            <td>Phone number</td>
+            <td><input type="text" th:field="*{phoneNumber}"></td>
+        </tr>
+        <tr>
+            <td>Id card</td>
+            <td><input type="text" th:field="*{idCard}"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" th:field="*{email}"></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><input type="text" th:field="*{address}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
