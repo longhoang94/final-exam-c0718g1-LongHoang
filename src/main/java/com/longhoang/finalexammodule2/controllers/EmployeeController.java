@@ -48,10 +48,27 @@ public class EmployeeController {
     }
 
     @PostMapping("/edit-employee")
-    public ModelAndView updateEmployee(@ModelAttribute("employee") Employee employee) {
-        employeeService.save(employee);
-        ModelAndView modelAndView = new ModelAndView("employee/edit", "employee", employee);
-        modelAndView.addObject("message", "Updated successfully");
+    public ModelAndView updateEmployee(@Validated @ModelAttribute("employee") Employee employee, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("employee/edit");
+        } else {
+            employeeService.save(employee);
+            ModelAndView modelAndView = new ModelAndView("employee/edit", "employee", employee);
+            modelAndView.addObject("message", "Updated successfully");
+            return modelAndView;
+        }
+    }
+
+    @GetMapping("/delete-employee/{id}")
+    public ModelAndView showDeleteForm(@PathVariable("id") Integer id) {
+        return new ModelAndView("employee/delete", "employee", employeeService.findById(id));
+    }
+
+    @PostMapping("/delete-employee")
+    public ModelAndView deleteEmployee(@ModelAttribute("employee") Employee employee) {
+        employeeService.delete(employee.getId());
+        ModelAndView modelAndView = new ModelAndView("employee/delete", "employee", employee);
+        modelAndView.addObject("message", "Deleted Successfully");
         return modelAndView;
     }
 }
