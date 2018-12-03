@@ -14,4 +14,6 @@ public interface EmployeeService {
     void delete(Integer id);
 
     void save(Employee employee);
+
+    Page<Employee> findAllByNameContaining(Optional<String> keyword, Pageable pageable);
 }

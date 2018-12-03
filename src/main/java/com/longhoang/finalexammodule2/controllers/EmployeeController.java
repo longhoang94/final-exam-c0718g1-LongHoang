@@ -8,11 +8,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @Controller
 public class EmployeeController {
@@ -20,8 +19,14 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/employees")
-    public ModelAndView listEmployee(Pageable pageable) {
-        Page<Employee> employees = employeeService.findAll(pageable);
+    public ModelAndView listEmployee(Pageable pageable, @RequestParam("keyword")Optional<String> keyword) {
+        Page<Employee> employees;
+
+        if (keyword.isPresent()) {
+            employees = employeeService.findAllByNameContaining(keyword, pageable);
+        } else {
+            employees = employeeService.findAll(pageable);
+        }
         return new ModelAndView("employee/list", "employees", employees);
     }
 

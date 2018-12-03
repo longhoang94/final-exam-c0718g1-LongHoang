@@ -32,4 +32,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void save(Employee employee) {
         employeeRepository.save(employee);
     }
+
+    @Override
+    public Page<Employee> findAllByNameContaining(Optional<String> keyword, Pageable pageable) {
+        return employeeRepository.findAllByNameContaining(keyword, pageable);
+    }
 }
