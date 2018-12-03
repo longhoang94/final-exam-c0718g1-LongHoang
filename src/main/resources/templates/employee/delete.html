@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+</head>
+<body>
+<th:block th:if="${message}">
+    <p th:text="${message}" style="color: yellow"></p>
+</th:block>
+<a href="/employees">Back to employee list</a>
+<h1>Delete employee</h1>
+<form th:action="@{/edit-employee}" th:object="${employee}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}" disabled="disabled"></td>
+        </tr>
+        <tr>
+            <td>Day of birth</td>
+            <td><input type="text" th:field="*{dayOfBirth}" disabled="disabled"></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td><input type="text" th:field="*{gender}" disabled="disabled"></td>
+        </tr>
+        <tr>
+            <td>Phone number</td>
+            <td><input type="text" th:field="*{phoneNumber}" disabled="disabled"></td>
+        </tr>
+        <tr>
+            <td>Id card</td>
+            <td><input type="text" th:field="*{idCard}" disabled="disabled"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" th:field="*{Email}" disabled="disabled"></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><input type="text" th:field="*{address}" disabled="disabled"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Delete"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
