@@ -36,11 +36,17 @@ public class EmployeeController {
     }
 
     @PostMapping("/create-employee")
-    public ModelAndView createEmployee(@Validated @ModelAttribute("employee") Employee employee, BindingResult bindingResult) {
+    public ModelAndView createEmployee(@Validated @ModelAttribute("employee") Employee employee, BindingResult bindingResult,
+                                       @RequestParam("gender") String gender) {
         if (bindingResult.hasErrors()) {
             return new ModelAndView("employee/create");
         } else {
             employeeService.save(employee);
+            if (gender.equals("0")) {
+                employee.setGender("male");
+            } else if (gender.equals("1")) {
+                employee.setGender("female");
+            }
             ModelAndView modelAndView = new ModelAndView("employee/create", "employee", new Employee());
             modelAndView.addObject("message", "Created successfully");
             return modelAndView;
