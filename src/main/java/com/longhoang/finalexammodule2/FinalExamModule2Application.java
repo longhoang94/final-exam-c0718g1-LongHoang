@@ -1,21 +1,13 @@
 package com.longhoang.finalexammodule2;
 
-import com.longhoang.finalexammodule2.formatters.EmployeeGroupFormatter;
-import com.longhoang.finalexammodule2.models.EmployeeGroup;
 import com.longhoang.finalexammodule2.services.EmployeeGroupService;
 import com.longhoang.finalexammodule2.services.EmployeeService;
-import com.longhoang.finalexammodule2.services.impl.EmployeeGroupImpl;
+import com.longhoang.finalexammodule2.services.impl.EmployeeGroupServiceImpl;
 import com.longhoang.finalexammodule2.services.impl.EmployeeServiceImpl;
-import org.springframework.beans.BeansException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.format.FormatterRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @EnableJpaRepositories
 
@@ -28,7 +20,7 @@ public class FinalExamModule2Application {
 
 	@Bean
 	public EmployeeGroupService employeeGroupService() {
-		return new EmployeeGroupImpl();
+		return new EmployeeGroupServiceImpl();
 	}
 
 	public static void main(String[] args) {
