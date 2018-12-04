@@ -18,8 +18,6 @@ public class Employee {
     @NotBlank(message = "name can't blank")
     private String name;
 
-    @NotBlank(message = "gender can't blank")
-    @Pattern(regexp = "^[0-1]$", message = "0 = Male, 1 = Female")
     private String gender;
 
     @Pattern(regexp = "[0-9]{2}/[0-9]{2}/[0-9]{2}", message = "example: dd/MM/yy")

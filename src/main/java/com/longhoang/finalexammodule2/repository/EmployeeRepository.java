@@ -8,5 +8,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import java.util.Optional;
 
 public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Integer> {
-    Page<Employee> findByNameContaining(Optional<String> keyword, Pageable pageable);
+    Page<Employee> findAllByNameContaining(Optional<String> keyword, Pageable pageable);
 }

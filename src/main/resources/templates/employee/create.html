@@ -32,7 +32,8 @@
         </tr>
         <tr>
             <td>Gender</td>
-            <td><input type="text" th:field="*{gender}"></td>
+            <td><input type="radio" name="gender" th:field="*{gender}" value="male">Male</td>
+            <td><input type="radio" name="gender" th:field="*{gender}" value="female">Female</td>
             <td th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">Gender error</td>
         </tr>
         <tr>

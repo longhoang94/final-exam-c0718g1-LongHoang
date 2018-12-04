@@ -15,5 +15,5 @@ public interface EmployeeService {
 
     void save(Employee employee);
 
-    Page<Employee> findByNameContaining(Optional<String> keyword, Pageable pageable);
+    Page<Employee> findAllByNameContaining(Optional<String> keyword, Pageable pageable);
 }

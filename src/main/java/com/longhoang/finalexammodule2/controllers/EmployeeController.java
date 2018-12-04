@@ -7,7 +7,9 @@ import com.longhoang.finalexammodule2.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +31,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees")
-    public ModelAndView listEmployee(Pageable pageable) {
+    public ModelAndView listEmployee(@PageableDefault(size = 2) Pageable pageable) {
         Page<Employee> employees = employeeService.findAll(pageable);
         return new ModelAndView("employee/list", "employees", employees);
     }
@@ -90,8 +92,9 @@ public class EmployeeController {
     }
 
     @GetMapping("/search")
-    public ModelAndView search(@RequestParam("keyword") Optional<String> keyword, Pageable pageable) {
-        Page<Employee> employees = employeeService.findByNameContaining(keyword, pageable);
+    public ModelAndView search(@PageableDefault(size = 2) @RequestParam("keyword") Optional<String> keyword, Pageable pageable) {
+        Page<Employee> employees = employeeService.findAllByNameContaining(keyword, pageable);
         return new ModelAndView("employee/list", "employees", employees);
     }
+
 }
