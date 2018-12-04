@@ -31,19 +31,6 @@ public class FinalExamModule2Application {
 		return new EmployeeGroupImpl();
 	}
 
-	@Configuration
-	static class MyConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
-		private ApplicationContext applicationContext;
-		@Override
-		public void addFormatters(FormatterRegistry registry) {
-			registry.addFormatter(new EmployeeGroupFormatter(applicationContext.getBean(EmployeeGroupService.class)));
-		}
-		@Override
-		public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-			this.applicationContext = applicationContext;
-		}
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(FinalExamModule2Application.class, args);
 	}

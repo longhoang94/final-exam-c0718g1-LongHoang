@@ -29,14 +29,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees")
-    public ModelAndView listEmployee(Pageable pageable, @RequestParam("keyword")Optional<String> keyword) {
-        Page<Employee> employees;
-
-        if (keyword.isPresent()) {
-            employees = employeeService.findAllByNameContaining(keyword, pageable);
-        } else {
-            employees = employeeService.findAll(pageable);
-        }
+    public ModelAndView listEmployee(Pageable pageable) {
+        Page<Employee> employees = employeeService.findAll(pageable);
         return new ModelAndView("employee/list", "employees", employees);
     }
 
@@ -46,7 +40,8 @@ public class EmployeeController {
     }
 
     @PostMapping("/create-employee")
-    public ModelAndView createEmployee(@Validated @ModelAttribute("employee") Employee employee, BindingResult bindingResult,
+    public ModelAndView createEmployee(@Validated @ModelAttribute("employee") Employee employee, BindingResult
+            bindingResult,
                                        @RequestParam("gender") String gender) {
         if (bindingResult.hasErrors()) {
             return new ModelAndView("employee/create");
@@ -69,7 +64,8 @@ public class EmployeeController {
     }
 
     @PostMapping("/edit-employee")
-    public ModelAndView updateEmployee(@Validated @ModelAttribute("employee") Employee employee, BindingResult bindingResult) {
+    public ModelAndView updateEmployee(@Validated @ModelAttribute("employee") Employee employee, BindingResult
+            bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ModelAndView("employee/edit");
         } else {
@@ -91,5 +87,11 @@ public class EmployeeController {
         ModelAndView modelAndView = new ModelAndView("employee/delete", "employee", employee);
         modelAndView.addObject("message", "Deleted Successfully");
         return modelAndView;
+    }
+
+    @GetMapping("/search")
+    public ModelAndView search(@RequestParam("keyword") Optional<String> keyword, Pageable pageable) {
+        Page<Employee> employees = employeeService.findByNameContaining(keyword, pageable);
+        return new ModelAndView("employee/list", "employees", employees);
     }
 }

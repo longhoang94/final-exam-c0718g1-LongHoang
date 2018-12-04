@@ -32,6 +32,7 @@ public class Employee {
     @NotNull(message = "idCard can't null")
     private String idCard;
 
+    @Email
     @NotBlank(message = "Can't blank. Email example: abc@gmail.com")
     private String email;
 
