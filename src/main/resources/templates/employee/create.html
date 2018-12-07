@@ -13,8 +13,10 @@
 <form th:action="@{/create-employee}" th:object="${employee}" method="post">
     <table>
         <tr>
-            <td th:each="p : ${employeeGroups}">
-
+            <td>
+                <select th:field="*{employeeGroup}">
+                    <option th:each="p : ${employeeGroups}" th:value="p."></option>
+                </select>
             </td>
         </tr>
         <tr>
