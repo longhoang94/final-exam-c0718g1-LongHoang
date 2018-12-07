@@ -6,7 +6,7 @@ import com.longhoang.finalexammodule2.services.EmployeeGroupService;
 
 import java.util.Optional;
 
-public class EmployeeGroupImpl implements EmployeeGroupService {
+public class EmployeeGroupServiceImpl implements EmployeeGroupService {
     private EmployeeGroupRepository employeeGroupRepository;
 
     @Override

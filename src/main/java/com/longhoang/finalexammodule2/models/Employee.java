@@ -15,7 +15,8 @@ public class Employee {
     private String name;
 
     @OneToMany(targetEntity = EmployeeGroup.class)
-
+    @JoinColumn(name = "employee_group_id")
+    private EmployeeGroup employeeGroup;
 
     private String gender;
 
@@ -110,5 +111,13 @@ public class Employee {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public EmployeeGroup getEmployeeGroup() {
+        return employeeGroup;
+    }
+
+    public void setEmployeeGroup(EmployeeGroup employeeGroup) {
+        this.employeeGroup = employeeGroup;
     }
 }
