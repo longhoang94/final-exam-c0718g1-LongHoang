@@ -13,7 +13,7 @@ public class EmployeeGroupFormatter implements Formatter<Optional<EmployeeGroup>
     private EmployeeGroupService employeeGroupService;
 
     @Autowired
-    public EmployeeGroupFormatter employeeGroupFormatter(EmployeeGroupService e) {
+    public EmployeeGroupFormatter(EmployeeGroupService e) {
         this.employeeGroupService = e;
     }
 
