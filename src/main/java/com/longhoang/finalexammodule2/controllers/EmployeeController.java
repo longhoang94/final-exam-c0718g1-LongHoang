@@ -19,14 +19,9 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/employees")
-    public ModelAndView listEmployee(Pageable pageable, @RequestParam("keyword")Optional<String> keyword) {
-        Page<Employee> employees;
+    public ModelAndView listEmployee(Pageable pageable) {
+        Page<Employee> employees = employeeService.findAll(pageable);
 
-        if (keyword.isPresent()) {
-            employees = employeeService.findAllByNameContaining(keyword, pageable);
-        } else {
-            employees = employeeService.findAll(pageable);
-        }
         return new ModelAndView("employee/list", "employees", employees);
     }
 
@@ -81,5 +76,16 @@ public class EmployeeController {
         ModelAndView modelAndView = new ModelAndView("employee/delete", "employee", employee);
         modelAndView.addObject("message", "Deleted Successfully");
         return modelAndView;
+    }
+
+    @PostMapping("/search")
+    public ModelAndView search(Pageable pageable, @RequestParam("keyword") Optional<String> keyword) {
+        Page<Employee> employees;
+        if (keyword.isPresent()) {
+            employees = employeeService.findAllByNameContaining(keyword, pageable);
+        } else {
+            employees = employeeService.findAll(pageable);
+        }
+        return new ModelAndView("employee/list", "employees", employees);
     }
 }

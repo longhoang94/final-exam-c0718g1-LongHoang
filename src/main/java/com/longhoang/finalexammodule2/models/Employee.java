@@ -14,8 +14,9 @@ public class Employee {
     @NotBlank(message = "name can't blank")
     private String name;
 
-    @NotBlank(message = "gender can't blank")
-    @Pattern(regexp = "^[0-1]$", message = "0 = Male, 1 = Female")
+    @OneToMany(targetEntity = EmployeeGroup.class)
+
+
     private String gender;
 
     @Pattern(regexp = "[0-9]{2}/[0-9]{2}/[0-9]{2}", message = "example: dd/MM/yy")
@@ -25,7 +26,7 @@ public class Employee {
     private String phoneNumber;
 
     @NotBlank
-    @NotNull(message = "idCard can't null")
+    @NotNull(message = "id Card can't null")
     private String idCard;
 
     @NotBlank(message = "Can't blank. Email example: abc@gmail.com")
