@@ -1,6 +1,7 @@
 package com.longhoang.finalexammodule2.controllers;
 
 import com.longhoang.finalexammodule2.models.Employee;
+import com.longhoang.finalexammodule2.models.EmployeeGroup;
 import com.longhoang.finalexammodule2.services.EmployeeGroupService;
 import com.longhoang.finalexammodule2.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,9 @@ public class EmployeeController {
     private EmployeeGroupService employeeGroupService;
 
     @ModelAttribute("employeeGroups")
-    public
+    public Iterable<EmployeeGroup> employeeGroups() {
+        return employeeGroupService.findAll();
+    }
 
     @GetMapping("/employees")
     public ModelAndView listEmployee(Pageable pageable) {
