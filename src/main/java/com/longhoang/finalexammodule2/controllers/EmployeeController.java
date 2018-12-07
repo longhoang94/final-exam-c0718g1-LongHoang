@@ -28,7 +28,7 @@ public class EmployeeController {
         return employeeGroupService.findAll();
     }
 
-    @GetMapping("/employees")
+    @GetMapping(value = {"/employees", "/"})
     public ModelAndView listEmployee(Pageable pageable) {
         Page<Employee> employees = employeeService.findAll(pageable);
 
@@ -88,7 +88,7 @@ public class EmployeeController {
         return modelAndView;
     }
 
-    @PostMapping("/search")
+    @GetMapping("/search")
     public ModelAndView search(Pageable pageable, @RequestParam("keyword") Optional<String> keyword) {
         Page<Employee> employees;
         if (keyword.isPresent()) {

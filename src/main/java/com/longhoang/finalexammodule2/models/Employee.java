@@ -14,7 +14,7 @@ public class Employee {
     @NotBlank(message = "name can't blank")
     private String name;
 
-    @OneToMany(targetEntity = EmployeeGroup.class)
+    @ManyToOne(targetEntity = EmployeeGroup.class)
     @JoinColumn(name = "employee_group_id")
     private EmployeeGroup employeeGroup;
 

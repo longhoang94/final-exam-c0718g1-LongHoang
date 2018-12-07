@@ -7,7 +7,7 @@
 <body>
 <h1>Employee List</h1>
 <a href="/create-employee">Create a new employee</a>
-<form th:action="@{/search}" method="post">
+<form th:action="@{/search}" method="get">
     <input type="search" name="keyword">
     <input type="submit" value="Search">
 </form>

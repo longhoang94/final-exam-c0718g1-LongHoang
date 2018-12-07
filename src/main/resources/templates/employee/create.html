@@ -15,7 +15,7 @@
         <tr>
             <td>
                 <select th:field="*{employeeGroup}">
-                    <option th:each="p : ${employeeGroups}" th:value="p."></option>
+                    <option th:each="p : ${employeeGroups}" th:value="${p.id}" th:text="${p.name}"></option>
                 </select>
             </td>
         </tr>
