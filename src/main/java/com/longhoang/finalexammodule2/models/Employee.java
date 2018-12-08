@@ -26,7 +26,7 @@ public class Employee {
 
     private String gender;
 
-    @DateTimeFormat(pattern ="dd/MM/yyyy")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date dayOfBirth;
 
     @Pattern(regexp = "^0[0-9]{9}$", message = "start with 0 and have 10 numbers")
@@ -83,15 +83,8 @@ public class Employee {
         return dayOfBirth;
     }
 
-    public void setDayOfBirth(String dayOfBirth) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = null;
-        try {
-            date = formatter.parse(dayOfBirth);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        this.dayOfBirth = date;
+    public void setDayOfBirth(Date dayOfBirth) {
+        this.dayOfBirth = dayOfBirth;
     }
 
     public String getIdCard() {

@@ -27,7 +27,7 @@
         </tr>
         <tr>
             <td>Day of birth</td>
-            <td><input type="text" th:field="*{dayOfBirth}"></td>
+            <td><input type="date" th:field="*{dayOfBirth}"></td>
             <td th:if="${#fields.hasErrors('dayOfBirth')}" th:errors="*{dayOfBirth}">Day of birth error</td>
         </tr>
         <tr>
