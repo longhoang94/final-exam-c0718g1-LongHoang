@@ -10,9 +10,13 @@
 </th:block>
 <a href="/employees">Back to employee list</a>
 <h1>Delete employee</h1>
-<form th:action="@{/edit-employee}" th:object="${employee}" method="post">
+<form th:action="@{/delete-employee}" th:object="${employee}" method="post">
     <input type="hidden" th:field="*{id}">
     <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{employeeGroup.name}" disabled="disabled"></td>
+        </tr>
         <tr>
             <td>Name</td>
             <td><input type="text" th:field="*{name}" disabled="disabled"></td>

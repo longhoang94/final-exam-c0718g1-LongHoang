@@ -13,6 +13,7 @@
 <form th:action="@{/create-employee}" th:object="${employee}" method="post">
     <table>
         <tr>
+            <td>Employee Group</td>
             <td>
                 <select th:field="*{employeeGroup}">
                     <option th:each="p : ${employeeGroups}" th:value="${p.id}" th:text="${p.name}"></option>
@@ -31,9 +32,10 @@
         </tr>
         <tr>
             <td>Gender</td>
-            <td><input type="radio" th:field="*{gender}">Male</td>
-            <td><input type="radio" th:field="*{gender}">Female</td>
-            <td><input type="radio" th:field="*{gender}">Other</td>
+            <td><input type="radio" th:field="*{gender}" value="male">Male
+                <input type="radio" th:field="*{gender}" value="female">Female
+                <input type="radio" th:field="*{gender}" value="other" checked="checked">Other
+            </td>
         </tr>
         <tr>
             <td>Phone number</td>

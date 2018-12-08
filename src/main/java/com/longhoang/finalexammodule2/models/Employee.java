@@ -1,8 +1,14 @@
 package com.longhoang.finalexammodule2.models;
 
 
+import net.bytebuddy.implementation.bind.annotation.Default;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 @Table(name = "employee")
@@ -20,8 +26,8 @@ public class Employee {
 
     private String gender;
 
-    @Pattern(regexp = "[0-9]{2}/[0-9]{2}/[0-9]{2}", message = "example: dd/MM/yy")
-    private String dayOfBirth;
+    @DateTimeFormat(pattern ="dd/MM/yyyy")
+    private Date dayOfBirth;
 
     @Pattern(regexp = "^0[0-9]{9}$", message = "start with 0 and have 10 numbers")
     private String phoneNumber;
@@ -39,7 +45,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String name, String gender, String dayOfBirth, String phoneNumber, String idCard, String email, String address) {
+    public Employee(String name, String gender, Date dayOfBirth, String phoneNumber, String idCard, String email, String address) {
         this.name = name;
         this.gender = gender;
         this.dayOfBirth = dayOfBirth;
@@ -73,12 +79,19 @@ public class Employee {
         this.gender = gender;
     }
 
-    public String getDayOfBirth() {
+    public Date getDayOfBirth() {
         return dayOfBirth;
     }
 
     public void setDayOfBirth(String dayOfBirth) {
-        this.dayOfBirth = dayOfBirth;
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = null;
+        try {
+            date = formatter.parse(dayOfBirth);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.dayOfBirth = date;
     }
 
     public String getIdCard() {
